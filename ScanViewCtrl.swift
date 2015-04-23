@@ -84,7 +84,7 @@ class ScanViewCtrl: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UIAl
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!){
         
         if metadataObjects != nil && metadataObjects.count > 0 {
-            var metadataObj: AVMetadataMachineReadableCodeObject = metadataObjects[0] as AVMetadataMachineReadableCodeObject
+            var metadataObj: AVMetadataMachineReadableCodeObject = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
             
             dispatch_async(dispatch_get_main_queue()) {() -> Void in
                 
@@ -102,9 +102,13 @@ class ScanViewCtrl: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UIAl
                 var code: String = fullNameArr[0]
                 var server:String = fullNameArr[1]
                 
-                //忠信限制
-                if !contains(Global.chhsAprovedList,server){
-                    server = ""
+                if !contains(Global.chhsAprovedList, server){
+                    let alert = UIAlertView()
+                    alert.title = "系統提示"
+                    alert.message = "此學校不被允許加入"
+                    alert.addButtonWithTitle("OK")
+                    alert.show()
+                    return
                 }
                 
                 var con = Global.connector.Clone()
@@ -146,9 +150,10 @@ class ScanViewCtrl: UIViewController,AVCaptureMetadataOutputObjectsDelegate,UIAl
                                     alert.show()
                                 }
                                 else{
+                                    let errorMsg = xml["Envelope"]["Header"]["Status"]["Message"].element?.text
                                     let alert = UIAlertView()
                                     alert.title = "系統提示"
-                                    alert.message = "加入失敗"
+                                    alert.message = "加入失敗:\(errorMsg!)"
                                     alert.addButtonWithTitle("OK")
                                     alert.show()
                                 }

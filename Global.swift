@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 struct Global{
-    //忠信限制
-    static var chhsAprovedList = ["chhs.hcc.edu.tw","j.chhs.hcc.edu.tw","n.chhs.hcc.edu.tw","dev.sh_d"]
+    static var chhsAprovedList = ["chhs.hcc.edu.tw","cyg.chhs.hcc.edu.tw","j.chhs.hcc.edu.tw","n.chhs.hcc.edu.tw","dev.sh_d"]
     static var connector:Connector!
     static var ChildList:[Child] = [Child]()
     static var CurrentChild:Child!
@@ -229,6 +228,10 @@ extension Int {
 extension String {
     var doubleValue: Double {
         return (self as NSString).doubleValue
+    }
+    
+    public var UrlEncoding: String?{
+        return self.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
     }
 }
 

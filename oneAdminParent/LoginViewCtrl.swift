@@ -70,16 +70,16 @@ class LoginViewCtrl: UIViewController, UITextFieldDelegate,FBLoginViewDelegate {
     }
     
     // called when 'return' key pressed. return NO to ignore.
-    func textFieldShouldReturn(textField: UITextField!) -> Bool
+    func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         self.view.endEditing(true)
         return true
     }
     
     // called when screen touch
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent){
-        self.view.endEditing(true)
-    }
+    //override func touchesBegan(touches: NSSet, withEvent event: UIEvent){
+        //self.view.endEditing(true)
+    //}
     
 //    func keyboardWillShow(notification: NSNotification) {
 //        
@@ -126,8 +126,16 @@ class LoginViewCtrl: UIViewController, UITextFieldDelegate,FBLoginViewDelegate {
     //after FB login
     func loginViewFetchedUserInfo(loginView: FBLoginView!, user: FBGraphUser!) {
         
-        fbToken = FBSession.activeSession().accessTokenData.accessToken
-        LoginWithFB()
+        //可能會觸發兩次,所以做判斷確保是必要的執行
+        if let token = FBSession.activeSession().accessTokenData.accessToken{
+            if fbToken != token{
+                fbToken = token
+                LoginWithFB()
+            }
+        }
+        
+        //fbToken = FBSession.activeSession().accessTokenData.accessToken
+        //LoginWithFB()
         
         //            println("user name: \(user.name)")
         //            println("token: \(fbToken)")
@@ -180,6 +188,7 @@ class LoginViewCtrl: UIViewController, UITextFieldDelegate,FBLoginViewDelegate {
     func LoginWithFB(){
         //Global.Loading.showActivityIndicator(self.view)
         //self.status.text = "登入驗證"
+        //println("fb login")
         _con = Connector(authUrl: "https://auth.ischool.com.tw/oauth/token.php", accessPoint: "https://auth.ischool.com.tw:8443/dsa/greening", contract: "user")
         _con.ClientID = "5e89bdfbf971974e3b53312384c0013a"
         _con.ClientSecret = "855b8e05afadc32a7a2ecbf0b09011422e5e84227feb5449b1ad60078771f979"
@@ -202,6 +211,7 @@ class LoginViewCtrl: UIViewController, UITextFieldDelegate,FBLoginViewDelegate {
     
     func GetChildList(sender:UIViewController!){
         
+        //println("get child")
         if sender != nil{
             Global.Loading.showActivityIndicator(sender.view)
         }
@@ -322,7 +332,7 @@ class LoginViewCtrl: UIViewController, UITextFieldDelegate,FBLoginViewDelegate {
                 dispatch_once(&Login.token) {
                     //Global.Selector = PrompView.GetInstance()
                     Global.Selector = SelectStudentView.GetInstance()
-                    var nextView = self.storyboard?.instantiateViewControllerWithIdentifier("Main") as UIViewController
+                    var nextView = self.storyboard?.instantiateViewControllerWithIdentifier("Main") as! UIViewController
                     
                     if sender == nil{
                         self.presentViewController(nextView, animated: true, completion: nil)
@@ -348,7 +358,7 @@ class LoginViewCtrl: UIViewController, UITextFieldDelegate,FBLoginViewDelegate {
     }
     
     func MoveToAddChildPage(){
-        var nextView = self.storyboard?.instantiateViewControllerWithIdentifier("myChild") as UIViewController
+        var nextView = self.storyboard?.instantiateViewControllerWithIdentifier("myChild") as! UIViewController
         self.presentViewController(nextView, animated: true, completion: nil)
         
         Global.Loading.hideActivityIndicator(self.view)

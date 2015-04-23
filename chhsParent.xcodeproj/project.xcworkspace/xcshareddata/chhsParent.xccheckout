@@ -10,31 +10,31 @@
 	<string>chhsParent</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>513C8280C7769E6D153F0799FC5974B4A431D546</key>
-		<string>https://github.com/imcloudwu/oneAdminParent.git</string>
+		<key>01C1C65F23ED277158F96D316FAC4B1A6A8BC69C</key>
+		<string>https://github.com/imcloudwu/chhsParent.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>chhsParent.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>513C8280C7769E6D153F0799FC5974B4A431D546</key>
+		<key>01C1C65F23ED277158F96D316FAC4B1A6A8BC69C</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/imcloudwu/oneAdminParent.git</string>
+	<string>https://github.com/imcloudwu/chhsParent.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>513C8280C7769E6D153F0799FC5974B4A431D546</string>
+	<string>01C1C65F23ED277158F96D316FAC4B1A6A8BC69C</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>513C8280C7769E6D153F0799FC5974B4A431D546</string>
+			<string>01C1C65F23ED277158F96D316FAC4B1A6A8BC69C</string>
 			<key>IDESourceControlWCCName</key>
-			<string>chhs</string>
+			<string>chhsParent</string>
 		</dict>
 	</array>
 </dict>

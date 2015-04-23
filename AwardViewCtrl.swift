@@ -170,7 +170,7 @@ class AwardViewCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
         
         if _displayData[indexPath.row].isDemerit{
-            var cell = tableView.dequeueReusableCellWithIdentifier("demeritCell") as DemeritCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("demeritCell") as! DemeritCell
             cell.A.text = _displayData[indexPath.row].DemeritA
             cell.B.text = _displayData[indexPath.row].DemeritB
             cell.C.text = _displayData[indexPath.row].DemeritC
@@ -179,7 +179,7 @@ class AwardViewCtrl: UIViewController,UITableViewDelegate,UITableViewDataSource,
             return cell
         }
         else{
-            var cell = tableView.dequeueReusableCellWithIdentifier("meritCell") as MeritCell
+            var cell = tableView.dequeueReusableCellWithIdentifier("meritCell") as! MeritCell
             cell.A.text = _displayData[indexPath.row].MeritA
             cell.B.text = _displayData[indexPath.row].MeritB
             cell.C.text = _displayData[indexPath.row].MeritC
